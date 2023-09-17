@@ -5,15 +5,15 @@ import dataCategories from "../../data/dataCategories"
 import { Header } from '../../components'
 import { CategoryItem } from './components'
 
-const Home = ({setCategorySelected}) => {
+
+const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Header title={"Categorías"}/>
+      <Header title={"Categorías"} navigation={navigation}/>
       <FlatList 
         data={dataCategories}
-        keyExtractor={category => category}
-        renderItem={({item}) => <CategoryItem category={item} 
-        setCategorySelected={setCategorySelected}/>}
+        keyExtractor={category => category.title}
+        renderItem={({item}) => (<CategoryItem category={item} navigation={navigation} />)}
       />
     </View>
 

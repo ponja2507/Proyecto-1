@@ -3,10 +3,10 @@ import React from 'react'
 import Card from '../../../../components/Card/Card'
 import styles from "./CategoryItem.style"
 
-const CategoryItem = ({category, setCategorySelected}) => {
+const CategoryItem = ({category, navigation}) => {
   return (
-    <Pressable onPress={() => setCategorySelected(category)}>
-        <Card style={styles.cardContainer}>
+    <Pressable onPress={() => navigation.navigate("Productos", {category})}>
+        <Card style={styles.cardContainer}  >
             <Text style={styles.text}>{category}</Text>
         </Card>
     </Pressable>
@@ -15,3 +15,14 @@ const CategoryItem = ({category, setCategorySelected}) => {
 
 export default CategoryItem
 
+
+
+// const CategoryItem = ({category, navigation }) => {
+//   return (
+//     <Pressable onPress={() => navigation.navigate("Productos", {category})}>
+//         <Card style={styles.cardContainer} children={category}>
+//             <Text style={styles.text}>{category}</Text>
+//         </Card>
+//     </Pressable>
+//   )
+// }

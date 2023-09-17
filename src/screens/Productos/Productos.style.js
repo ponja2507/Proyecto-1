@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {IndieFlower} from "../../global/fonts" 
 
 export default styles = StyleSheet.create({
     container: {
@@ -9,5 +10,9 @@ export default styles = StyleSheet.create({
         paddingHorizontal: 15,
         flex: 1,
         marginTop: 15,
+    },
+    text: {
+        fontFamily: "IndieFlower",
+        fontSize: 20, 
     }
 })

@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
     },
     input: {
         color: "white",
-        backgroundColor: colores.quinto,
+        backgroundColor: colores.tercero,
         borderRadius: 8,
         padding: 10,
         borderWidth: 1,

@@ -4,6 +4,7 @@ import { colores } from "../../constantes/colores";
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFFFFF",
+        // backgroundColor: colores.primero,
+        
     }
 })
