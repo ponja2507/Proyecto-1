@@ -14,15 +14,3 @@ const CategoryItem = ({category, navigation}) => {
 }
 
 export default CategoryItem
-
-
-
-// const CategoryItem = ({category, navigation }) => {
-//   return (
-//     <Pressable onPress={() => navigation.navigate("Productos", {category})}>
-//         <Card style={styles.cardContainer} children={category}>
-//             <Text style={styles.text}>{category}</Text>
-//         </Card>
-//     </Pressable>
-//   )
-// }

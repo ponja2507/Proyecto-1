@@ -1,18 +1,29 @@
 import { StyleSheet } from "react-native";
-import {IndieFlower} from "../../global/fonts" 
 
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
+        flexGrow: 10,
     },
     listContainer: {
         paddingHorizontal: 15,
-        flex: 1,
         marginTop: 15,
+        flexDirection: "row",
     },
     text: {
+        margin: 10,
         fontFamily: "IndieFlower",
         fontSize: 20, 
+        paddingTop: 15,
+    },
+    image: {
+        width: 80,
+        height: 80,
+        objectFit: "contain",
+    },
+    card: {
+        flexDirection: "row",
+        alignContent: "space-around",
     }
 })

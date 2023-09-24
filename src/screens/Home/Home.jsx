@@ -6,6 +6,7 @@ import { Header } from '../../components'
 import { CategoryItem } from './components'
 
 
+
 const Home = ({navigation}) => {
   return (
     <View style={styles.container}>

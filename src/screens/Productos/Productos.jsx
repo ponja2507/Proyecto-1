@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from "./Productos.style"
 import {Header, SearchInput} from "../../components"
@@ -32,8 +32,10 @@ const Productos = ({navigation, route}) => {
                 data={arrProductos}
                 renderItem={({item}) => (
                     <TouchableOpacity
+                        style={styles.card}
                         onPress={() => navigation.navigate("Detalle", { producto: item })}
                     >
+                        <Image style={styles.image} source={ { url: item.images[0] } }/>
                         <Text style={styles.text}>{item.title}</Text>
                     </TouchableOpacity>)
                 } 

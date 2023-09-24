@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
 import { colores } from '../../constantes/colores'
-import Cinzel from "../../global/fonts"
 
 export default styles = StyleSheet.create({
     container: {
@@ -8,18 +7,35 @@ export default styles = StyleSheet.create({
         backgroundColor: colores.primero,
         height: 80,
         width: `100%`,
-        justifyContent: "center",
         alignItems: `center`,
         paddingTop: 40,
-    },
-    botonContainer: {
-        width: "15%",
-        alignItems: "flex-start",
+        alignContent: "space-around",
     },
     text: {
         textAlign: "center",
-        width: "85%",
+        flexGrow: 1,
         fontSize: 30,
         fontFamily: "Cinzel",
     },
+    boton: {
+        padding: 4,
+        backgroundColor: colores.quinto,
+        borderRadius: 5,
+        margin: 2,
+    },
+    textBoton: {
+        color: "#fff",
+        fontWeight: '600',
+        fontFamily: "Cinzel",
+        fontSize: 20,
+    },
+    cart: {
+        // flex: 1,
+        flexDirection: "row-reverse",
+        marginLeft: 5,
+    },
+    textCart: {
+        paddingTop: 10,
+        color: colores.quinto,
+    }
 })
