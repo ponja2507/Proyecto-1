@@ -3,44 +3,45 @@ import React, { useEffect, useState } from 'react'
 import styles from "./Productos.style"
 import {Header, SearchInput} from "../../components"
 import todosProductos from "../../data/productos"
+import { useSelector } from 'react-redux'
+import { useGetProductosPorCategoriaQuery } from '../../services/shopApi'
 
-const Productos = ({navigation, route}) => {
-
+const Productos = ({ navigation }) => {
+    const category = useSelector(state => state.shop.categoriaSeleccionada)
     const [arrProductos, setArrProductos] = useState([])
     const [keyword, setKeyword] = useState ("")
-    const { category } = route.params
+    const { data, isLoading } = useGetProductosPorCategoriaQuery(category)
 
     useEffect( () => {
-        if(category) {
-            const productos = todosProductos.filter(producto => producto.category === category)
-            const productosFiltrados = productos.filter(producto => producto.title.includes(keyword)
+        console.log(data)
+        console.log(category)
+        if(data) {
+            const productosFiltrados = data.filter(producto => producto.title.includes(keyword)
             )
             setArrProductos(productosFiltrados)
-        } else{
-            const productosFiltrados = todosProductos.filter(producto => producto.title.includes(keyword)
-            )
-            setArrProductos(productosFiltrados)
-        }
-    }, [category, keyword]);
+        } 
+    }, [keyword]);
 
   return (
     <View style={styles.container}>
         <Header title={category} navigation={navigation}/>
         <SearchInput onSearch={setKeyword}/>
         <View style={styles.listContainer}>
-            <FlatList
-                data={arrProductos}
-                renderItem={({item}) => (
-                    <TouchableOpacity
-                        style={styles.card}
-                        onPress={() => navigation.navigate("Detalle", { producto: item })}
-                    >
-                        <Image style={styles.image} source={ { url: item.images[0] } }/>
-                        <Text style={styles.text}>{item.title}</Text>
-                    </TouchableOpacity>)
-                } 
-                keyExtractor={item => item.id}
-            />
+            {!isLoading && (
+                <FlatList
+                    data={Object.values(data)}
+                    renderItem={({item}) => (
+                        <TouchableOpacity
+                            style={styles.card}
+                            onPress={() => navigation.navigate("Detalle", { producto: item })}
+                        >
+                            <Image style={styles.image} source={ { uri: item.images[0] } }/>
+                            <Text style={styles.text}>{item.title}</Text>
+                        </TouchableOpacity>)
+                    } 
+                    keyExtractor={item => item.id}
+                />
+            )}
         </View>
     </View>
   )
