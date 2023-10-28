@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { CantCarrito, Header } from "../../components";
 import styles from "./Detalle.style";
@@ -10,8 +10,10 @@ const Detalle = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(agregaItem({ ...producto, quantity: { contador } }));
+    dispatch(agregaItem({ ...producto, quantity: 1 }));
   };
+
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
@@ -20,10 +22,10 @@ const Detalle = ({ navigation, route }) => {
         <Text style={styles.title}>{producto.title}</Text>
         <Text style={styles.descripcion}>{producto.description}</Text>
         <Text style={styles.price}>{`U$D ${producto.price}`}</Text>
-        <Pressable onPress={handleAddToCart}>
-          <Text>Agregar al Carrito</Text>
+        <Pressable style={styles.boton} onPress={handleAddToCart}>
+          <Text style={styles.text}>Agregar al Carrito</Text>
         </Pressable>
-        <CantCarrito />
+        {/* <CantCarrito /> */}
       </ScrollView>
     </View>
   );

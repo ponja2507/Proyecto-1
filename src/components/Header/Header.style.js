@@ -15,6 +15,7 @@ export default styles = StyleSheet.create({
         textAlign: "center",
         flexGrow: 1,
         fontSize: 30,
+        marginRight: 20,
         fontFamily: "Cinzel",
     },
     boton: {
@@ -29,13 +30,4 @@ export default styles = StyleSheet.create({
         fontFamily: "Cinzel",
         fontSize: 20,
     },
-    cart: {
-        // flex: 1,
-        flexDirection: "row-reverse",
-        marginLeft: 5,
-    },
-    textCart: {
-        paddingTop: 10,
-        color: colores.quinto,
-    }
 })

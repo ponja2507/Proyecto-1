@@ -9,17 +9,10 @@ export const shopApi = createApi({
             query: () => "categories.json"
         }),
         getProductos: builder.query({
-            query: () => "productos.json",
+            query: () => "products.json",
         }),
         getProductosPorCategoria: builder.query({
-            query: category => `productos.json?orderBy="category"&equalTo="${category}"`,
-        }),
-        postOrder: builder.mutation({
-            query: ({...orden}) => ({
-                url: "ordenes.json",
-                method: "POST",
-                body: orden,
-            })
+            query: category => `products.json?orderBy="category"&equalTo="${category}"`,
         }),
         getProfileImage: builder.query({
             query: localId => `profileImages/${localId}.json`
@@ -40,7 +33,6 @@ export const {
     useGetCategoriasQuery,
     useGetProductosQuery,
     useGetProductosPorCategoriaQuery,
-    usePostOrderMutation,
     useGetProfileImageQuery,
     usePostProfileImageMutation,
 } = shopApi

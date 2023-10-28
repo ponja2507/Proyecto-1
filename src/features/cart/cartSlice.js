@@ -4,7 +4,7 @@ const initialState = {
     user: "userLogged",
     updatedAt: Date.now().toLocaleString(),
     items: [],
-    total: null,
+    total: 0,
 };
 
 export const cartSlice = createSlice({
@@ -13,40 +13,76 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         agregaItem: (state, action) => {
+            const productos = state.items
             const productoRepetido = state.items.find(item => item.id === action.payload.id)
-            if(productoRepetido) {
-                const updateItem = state.items.map(item => {
-                    if(item.id === action.payload.id) {
-                        item.quantity += action.payload.quantity
-                        return item
-                    }
-                    return
-                })
-                const total = updateItem.reduce(
-                    (acc, current) => (acc += current.price * current.quantity), 0
-                    )
-                    state = {
-                        ...state,
-                        items: updateItem,
-                        total,
-                        updatedAt: new Date().toLocaleString()
-                    }
-            } else {
-                state.items.push(action.payload)
-                const total = state.items.reduce(
-                    (acc, current) => (acc += current.price * current.quantity), 0
-                )
-                state = {
+            if(!productoRepetido) 
+                return {
                     ...state,
-                    total,
-                    updatedAt : new Date().toLocaleString()
+                    items: [...state.items, action.payload],
+                    total: state.total + action.payload.price,
+                    updatedAt: new Date().toLocaleString(),
                 }
+
+            const itemsUpdated = productos.map (item => {
+                if (item.id === action.payload.id) {
+                    return Object.assign({}, item, {
+                        quantity: item.quantity + action.payload.quantity,
+                    })
+                }
+                return item
+            })
+            return {
+                ...state,
+                items: itemsUpdated,
+                total: state.total + action.payload.price,
+                updatedAt: new Date().toDateString(),
             }
         },
-        eliminarItem: (state, action) => {},
-    }
-})
+        eliminarItem: (state, action) => {
 
-export const { agregaItem, eliminarItem } = cartSlice.actions
+            const productos = state.items
+            const productoRepetido = state.items.find(item => item.id === action.payload.id)
+            if(!productoRepetido) 
+                return {
+                    ...state,
+                    items: [...state.items, action.payload],
+                    total: state.total - action.payload.price,
+                    updatedAt: new Date().toLocaleString(),
+                }
+                
+
+            const itemsUpdated = productos.map (item => {
+                if (item.id === action.payload.id) {
+                    return Object.assign({}, item, {
+                        quantity: item.quantity - action.payload.quantity,
+                    })
+                }
+                        return item
+                    })
+                    const newUpdate = itemsUpdated.map (item => {
+                        const i = itemsUpdated.indexOf(item)
+                        if (item.quantity === 0 ) {
+                            const itemsWithoutRemoves = itemsUpdated.splice(i, 1)
+                            return {
+                                ...state,
+                                items: itemsWithoutRemoves,
+                                total: state.total - action.payload.price,
+                                updatedAt: new Date().toDateString(),
+                            }
+                        }
+                    })
+                    return {
+                ...state,
+                items: itemsUpdated,
+                total: state.total - action.payload.price,
+                updatedAt: new Date().toDateString(),
+            }
+    },
+    limpiarCarrito: (state) => {
+        return state = initialState
+    }
+}})
+
+export const { agregaItem, eliminarItem, limpiarCarrito } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -25,5 +25,6 @@ export default styles = StyleSheet.create({
     card: {
         flexDirection: "row",
         alignContent: "space-around",
+        marginBottom: 5,
     }
 })

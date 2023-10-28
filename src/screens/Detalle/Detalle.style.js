@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colores } from '../../constantes/colores'
 
 export default styles = StyleSheet.create({
     container: {
@@ -30,5 +31,18 @@ export default styles = StyleSheet.create({
     scroll: {
       flex: 1,
       width: "100%",
+    },
+    boton: {
+      backgroundColor: colores.quinto,
+      borderRadius: 5,
+      width: 200,
+      height: 40,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    text: {
+      color: "#fff",
+      fontFamily: "Cinzel",
+      fontSize: 17,
     }
 })

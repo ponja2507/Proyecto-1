@@ -6,7 +6,7 @@ const AuthStack = createNativeStackNavigator()
 function AuthStackNavigator() {
     return(
             <AuthStack.Navigator 
-                initialRouteName="Registrarse"
+                initialRouteName="Acceder"
                 screenOptions={({route, navigation}) => ({
                     headerShown: false,
                 })}
